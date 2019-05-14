@@ -19,4 +19,11 @@ addons:
       - python3-setuptools
       - ninja-build
 
-install: pip3 install --user meson
+install:
+  - pip3 install --user meson
+  - cargo install cargo-deb
+
+script:
+  - cargo build --release
+  - cargo test --verbose --release
+  - BUILD_PATHS="cli tui iui" scripts/build-debs
