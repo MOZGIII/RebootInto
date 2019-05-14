@@ -1,0 +1,22 @@
+#!/bin/bash
+set -euo pipefail
+
+BUILD_PATHS="${BUILD_PATHS:-"."}"
+TARGET_DIR="${TARGET_DIR:-"target"}"
+RELEASE_DIR="${RELEASE_DIR:-"$TARGET_DIR/release-artifacts"}"
+
+ABS_TARGET_DIR="$(realpath "$TARGET_DIR")"
+
+mkdir -p "$RELEASE_DIR"
+
+for BUILD_PATH in $BUILD_PATHS; do
+  (
+    cd "$BUILD_PATH"
+    cargo deb
+
+    cd "$ABS_TARGET_DIR"
+    cp debian/* "$RELEASE_DIR"
+  )
+done
+
+ls -1 "$RELEASE_DIR"
