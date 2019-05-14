@@ -3,10 +3,10 @@ set -euo pipefail
 
 BUILD_PATHS="${BUILD_PATHS:-"."}"
 TARGET_DIR="${TARGET_DIR:-"target"}"
-RELEASE_DIR="${RELEASE_DIR:-"$TARGET_DIR/release-artifacts"}"
 
 ABS_TARGET_DIR="$(realpath "$TARGET_DIR")"
 
+RELEASE_DIR="${RELEASE_DIR:-"$ABS_TARGET_DIR/release-artifacts"}"
 mkdir -p "$RELEASE_DIR"
 
 for BUILD_PATH in $BUILD_PATHS; do
