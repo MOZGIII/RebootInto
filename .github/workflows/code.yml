@@ -106,6 +106,12 @@ jobs:
             env:
               CARGO_INCREMENTAL: "0"
             experimental: false
+          - name: Linux
+            os: ubuntu-latest
+            packaging-env-script: .github/scripts/packaging_env/linux.sh
+            packaging-script: .github/scripts/packaging/linux.sh
+            env: {}
+            experimental: false
 
       fail-fast: false
     env: ${{ matrix.platform.env }}
